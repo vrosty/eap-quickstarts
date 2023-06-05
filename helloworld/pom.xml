@@ -107,6 +107,10 @@
             <url>${maven.redhat.repository.url}</url>
             <layout>default</layout>
         </repository>
+        <repository>
+	    <id>redhat-maven-repository</id>
+	    <url>https://maven.repository.redhat.com/earlyaccess/all/</url>
+    </repository>
     </repositories>
     <dependencyManagement>
 
@@ -171,6 +175,28 @@
                 <failOnMissingWebXml>false</failOnMissingWebXml>
             </configuration>
         </plugin>
+        <plugin>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <version>3.3.0</version>
+        <executions>
+          <execution>
+            <phase>prepare-package</phase>
+            <goals>
+              <goal>copy</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>io.cryostat</groupId>
+                  <artifactId>cryostat-agent</artifactId>
+                  <version>0.2.2.redhat-00001</version>
+                </artifactItem>
+              </artifactItems>
+              <stripVersion>true</stripVersion>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
     </build>
 

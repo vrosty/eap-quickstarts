@@ -1,0 +1,10 @@
+apiVersion: wildfly.org/v1alpha1
+kind: WildFlyServer
+metadata:
+  name: kitchen-sink
+spec:
+  applicationImage: 'registry.redhat.io/jboss-eap-7/eap74-openjdk8-openshift-rhel7:latest'
+  envFrom:
+    - configMapRef:
+        name: eap-config
+  replicas: 1
